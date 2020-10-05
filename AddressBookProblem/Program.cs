@@ -18,7 +18,7 @@ namespace AddressBookProblem
             Console.WriteLine("Enter state");
             String state = Console.ReadLine();
             Console.WriteLine("Enter zip");
-            int zip = Console.ReadLine();
+            String zip = Console.ReadLine();
             Console.WriteLine("Enter phone No");
             String phoneNumber = Console.ReadLine();
             Console.WriteLine("Enter email");
