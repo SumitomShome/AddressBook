@@ -12,9 +12,9 @@ namespace AddressBookProblem
             bookBuilder.AddContacts("Rahul", "Das", "Jadavpur", "Kolkata", "West Bengal", "700032", "9903309542", "rahuldas1996@gmail.com");
             bookBuilder.AddContacts("Sayan", "Sarkar", "Birati", "Kolkata", "West Bengal", "700059", "8902644616", "sayansarkar@gmail.com");
             bookBuilder.DisplayContacts();
-            Console.WriteLine("Add the first name of the person whose contact you want to edit");
-            String firstNameForEditing = Console.ReadLine();
-            bookBuilder.EditContacts(firstNameForEditing);
+            Console.WriteLine("Add the first name of the person whose contact you want to delete");
+            String firstNameForDeleting = Console.ReadLine();
+            bookBuilder.DeleteContacts(firstNameForDeleting);
             bookBuilder.DisplayContacts();
             Console.ReadKey();
         }

@@ -34,26 +34,9 @@ namespace AddressBookProblem
                 Console.WriteLine("Email: " + item.Value.Email);
             }
          }
-       public void EditContacts(String firstNameForEditing)
+       public void DeleteContacts(String firstNameForDeleting)
         {
-            table.Remove(firstNameForEditing);
-            Console.WriteLine("Enter first name: ");
-            String firstName = Console.ReadLine();
-            Console.WriteLine("Enter last name: ");
-            String lastName = Console.ReadLine();
-            Console.WriteLine("Enter address: ");
-            String address = Console.ReadLine();
-            Console.WriteLine("Enter city: ");
-            String city = Console.ReadLine();
-            Console.WriteLine("Enter state: ");
-            String state = Console.ReadLine();
-            Console.WriteLine("Enter zip: ");
-            String zip = Console.ReadLine();
-            Console.WriteLine("Enter phone number: ");
-            String phoneNumber = Console.ReadLine();
-            Console.WriteLine("Enter email: ");
-            String email = Console.ReadLine();
-            AddContacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
+            table.Remove(firstNameForDeleting);
         }
-     }
+    }
 }
