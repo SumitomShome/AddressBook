@@ -6,7 +6,7 @@ namespace AddressBookProblem
 {
     public class AddressBookBuilder
     {
-       private Dictionary<string, Contacts> table = new Dictionary<string, Contacts>();
+        private Dictionary<string, Contacts> table = new Dictionary<string, Contacts>();
        public void AddContacts(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
             Contacts contacts = new Contacts();
