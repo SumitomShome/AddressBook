@@ -7,7 +7,7 @@ namespace AddressBookProblem
         {
             Console.WriteLine("Welcome to the address book problem!");
             AddressBookBuilder bookBuilder = new AddressBookBuilder();
-             Console.WriteLine("Enter first name: ");
+            Console.WriteLine("Enter first name: ");
             String firstName = Console.ReadLine();
             Console.WriteLine("Enter last name: ");
             String lastName = Console.ReadLine();
