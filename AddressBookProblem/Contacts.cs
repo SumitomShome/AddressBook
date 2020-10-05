@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 namespace AddressBookProblem
 {
-    public class Contacts
+    public class Contact
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,4 +14,4 @@ namespace AddressBookProblem
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
     }
- }
+}

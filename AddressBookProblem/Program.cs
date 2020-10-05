@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 namespace AddressBookProblem
 {
-    public class Program
+    class Program
     {
         static void Main(string[] args)
         {
