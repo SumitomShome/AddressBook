@@ -6,37 +6,115 @@ namespace AddressBookProblem
     {
         static void Main(string[] args)
         {
-            AddressBookBuilder bookBuilder = new AddressBookBuilder();
-            Console.WriteLine("Welcome to the address book problem!");
-            Console.WriteLine("Please enter number of names you want to enter: ");
-            int input = Console.Read();
-            for (int i = 0; i <= input; i++)
+            Console.WriteLine("Welcome to Address Book Problem!");
+            //TakeInfo.TakingInfo();
+            AddressBookBuilder addressBook = new AddressBookBuilder();
+            int choice, choice2;
+            string bookName = "default";
+            Console.WriteLine("Would You Like To \n1.Work on default AddressBook \n2.Create New AddressBook");
+            choice2 = Convert.ToInt32(Console.ReadLine());
+            switch (choice2)
             {
-                Console.WriteLine("Enter first name: ");
-                String firstName = Console.ReadLine();
-                Console.WriteLine("Enter last name: ");
-                String lastName = Console.ReadLine();
-                Console.WriteLine("Enter address: ");
-                String address = Console.ReadLine();
-                Console.WriteLine("Enter city: ");
-                String city = Console.ReadLine();
-                Console.WriteLine("Enter state: ");
-                String state = Console.ReadLine();
-                Console.WriteLine("Enter zip: ");
-                String zip = Console.ReadLine();
-                Console.WriteLine("Enter phone number: ");
-                String phoneNumber = Console.ReadLine();
-                Console.WriteLine("Enter email: ");
-                String email = Console.ReadLine();
-                bookBuilder.AddContacts(firstName, lastName, address, city, state, zip, phoneNumber, email);
-                bookBuilder.DisplayContacts();
+                case 1:
+                    addressBook.AddAddressBook(bookName);
+                    break;
+                case 2:
+                    Console.WriteLine("Enter Name Of New Addressbook You want to create : ");
+                    bookName = Console.ReadLine();
+                    addressBook.AddAddressBook(bookName);
+                    break;
             }
-            bookBuilder.DisplayContacts();
-            Console.WriteLine("Add the first name of the person whose contact you want to delete");
-            String firstNameForDeleting = Console.ReadLine();
-            bookBuilder.DeleteContacts(firstNameForDeleting);
-            bookBuilder.DisplayContacts();
-            Console.ReadKey();
+            do
+            {
+                Console.WriteLine($"Working On {bookName} AddressBook\n");
+                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View All Contacts \n5.Exit current Address Book\n6.Choose one of the below Address Books\n7.Exit Application\n");
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter First Name :");
+                        string firstName = Console.ReadLine();
+                        Console.WriteLine("Enter Last Name :");
+                        string lastName = Console.ReadLine();
+                        Console.WriteLine("Enter Address :");
+                        string address = Console.ReadLine();
+                        Console.WriteLine("Enter City :");
+                        string city = Console.ReadLine();
+                        Console.WriteLine("Enter State :");
+                        string state = Console.ReadLine();
+                        Console.WriteLine("Enter Email :");
+                        string email = Console.ReadLine();
+                        Console.WriteLine("Enter Zip :");
+                        string zip = Console.ReadLine();
+                        Console.WriteLine("Enter Phone Number :");
+                        string phoneNumber = Console.ReadLine();
+                        addressBook.AddContacts(firstName, lastName, address, city, state, email, zip, phoneNumber);
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter First Name Of Contact To Edit :");
+                        string firstNameToEdit = Console.ReadLine();
+                        addressBook.DeleteContacts(firstNameToEdit);
+                        Console.WriteLine("Enter Last Name :");
+                        string lastNameToEdit = Console.ReadLine();
+                        Console.WriteLine("Enter Address :");
+                        string addressToEdit = Console.ReadLine();
+                        Console.WriteLine("Enter City :");
+                        string cityToEdit = Console.ReadLine();
+                        Console.WriteLine("Enter State :");
+                        string stateToEdit = Console.ReadLine();
+                        Console.WriteLine("Enter Email :");
+                        string emailToEdit = Console.ReadLine();
+                        Console.WriteLine("Enter Zip :");
+                        string zipToEdit = Console.ReadLine();
+                        Console.WriteLine("Enter Phone Number :");
+                        string phoneNumberToEdit = Console.ReadLine();
+                        addressBook.AddContacts(firstNameToEdit, lastNameToEdit, addressToEdit, cityToEdit, stateToEdit, emailToEdit, zipToEdit, phoneNumberToEdit);
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter First Name Of Contact To Delete :");
+                        string nameToDelete = Console.ReadLine();
+                        addressBook.DeleteContacts(nameToDelete);
+                        break;
+                    case 4:
+                        addressBook.DisplayContacts();
+                        break;
+                    case 5:
+                        Console.WriteLine("Enter Name For New AddressBook");
+                        string newAddressBook = Console.ReadLine();
+                        addressBook.AddAddressBook(newAddressBook);
+                        Console.WriteLine("Would you like to Switch to " + newAddressBook);
+                        Console.WriteLine("1.Yes \n2.No");
+                        int c = Convert.ToInt32(Console.ReadLine());
+                        if (c == 1)
+                        {
+                            bookName = newAddressBook;
+                        }
+                        break;
+                    case 6:
+                        Console.WriteLine("Enter Name Of AddressBook From Below List");
+                        foreach (KeyValuePair<string, AddressBookBuilder> item in addressBook.GetAddressBook())
+                        {
+                            Console.WriteLine(item.Key);
+                        }
+                        while (true)
+                        {
+                            bookName = Console.ReadLine();
+                            if (addressBook.GetAddressBook().ContainsKey(bookName))
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("No such AddressBook found. Try Again.");
+                            }
+                        }
+                        break;
+                    case 7:
+                        Console.WriteLine("Thank You For Using Address Book System.");
+                        break;
+                }
+            } 
+	    while (choice != 7);
         }
     }
 }

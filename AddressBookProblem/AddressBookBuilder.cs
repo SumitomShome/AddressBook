@@ -7,6 +7,7 @@ namespace AddressBookProblem
     public class AddressBookBuilder
     {
        private Dictionary<string, Contacts> table = new Dictionary<string, Contacts>();
+       private Dictionary<string, AddressBookBuilder> addressBookDictionary = new Dictionary<string, AddressBookBuilder>();
        public void AddContacts(string firstName, string lastName, string address, string city, string state, string zip, string phoneNumber, string email)
         {
             Contacts contacts = new Contacts();
@@ -37,6 +38,16 @@ namespace AddressBookProblem
        public void DeleteContacts(String firstNameForDeleting)
         {
             table.Remove(firstNameForDeleting);
+        }
+       public void AddAddressBook(string bookName)
+        {
+            AddressBookBuilder addressBook = new AddressBookBuilder();
+            addressBookDictionary.Add(bookName, addressBook);
+            Console.WriteLine("AddressBook Created.");
+        }
+       public Dictionary<string, AddressBookBuilder> GetAddressBook()
+        {
+            return addressBookDictionary;
         }
     }
 }
