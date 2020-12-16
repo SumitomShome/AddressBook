@@ -26,7 +26,7 @@ namespace AddressBookProblem
             do
             {
                 Console.WriteLine($"Working On {bookName} AddressBook\n");
-                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Create new Address Book \n7.Use specific Address Book \n8. Search person by state or city \n9. Count by city or state \n10. Sort entries \n11. Use FileIO \n12.Read/Write in CSV file \n0.Exit from the program");
+                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Create new Address Book \n7.Use specific Address Book \n8. Search person by state or city \n9. Count by city or state \n10. Sort entries \n11. Use FileIO \n12.Read/Write in CSV file \n13. Read and write in JSON file \n0.Exit from the program");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -159,6 +159,11 @@ namespace AddressBookProblem
                         CSVHandler handler = new CSVHandler();
                         handler.WriteToFile(addressBook.addressBookDictionary);
                         handler.ReadFromFile();
+                        break;
+                    case 13:
+                        JSonOperation json = new JSonOperation();
+                        json.WriteToFile(addressBook.addressBookDictionary);
+                        json.ReadFromFile();
                         break;
                     case 0:
                         Console.WriteLine("Thank You For Using Address Book System.");
