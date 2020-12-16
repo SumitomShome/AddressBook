@@ -26,7 +26,7 @@ namespace AddressBookProblem
             do
             {
                 Console.WriteLine($"Working On {bookName} AddressBook\n");
-                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Create new Address Book \n7.Use specific Address Book \n8. Search person by state \n0.Exit from the program");
+                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Create new Address Book \n7.Use specific Address Book \n8. Search person by state or city \n0.Exit from the program");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -104,9 +104,22 @@ namespace AddressBookProblem
                         }
                         break;
                     case 8:
-                        Console.WriteLine("Enter state Of Contact To View :");
-                        string stateToView = Console.ReadLine();
-                        addressBook.SearchPersonByState(stateToView);
+                        Console.WriteLine("Would You Like To \n1.Search by city \n2.Search by state");
+                        int opt = Convert.ToInt32(Console.ReadLine());
+                        switch (opt)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter name of city :");
+                                addressBook.SearchPersonByCity(Console.ReadLine());
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter name of state :");
+                                addressBook.SearchPersonByState(Console.ReadLine());
+                                break;
+                            default:
+                                Console.WriteLine("Invalid Input.Enter 1 or 2");
+                                break;
+                        }
                         break;
                     case 0:
                         Console.WriteLine("Thank You For Using Address Book System.");

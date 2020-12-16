@@ -8,6 +8,8 @@ namespace AddressBookProblem
     {
         private Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();
         private Dictionary<string, AddressBookBuilder> addressBookDictionary = new Dictionary<string, AddressBookBuilder>();
+        private Dictionary<Contacts, string> cityDictionary = new Dictionary<Contacts, string>();
+        private Dictionary<string, Contacts> stateDictionary = new Dictionary<string, Contacts>();
         public void AddContact(string firstName, string lastName, string address, string city, string state, string email, int zip, long phoneNumber, string bookName)
         {
             Contacts contact = new Contacts(firstName, lastName, address, city, state, email, zip, phoneNumber);
@@ -123,6 +125,15 @@ namespace AddressBookProblem
             }
             return book;
         }
+        public List<Contacts> GetListOfDictctionaryKeys(Dictionary<Contacts, string> d)
+        {
+            List<Contacts> book = new List<Contacts>();
+            foreach (var value in d.Keys)
+            {
+                book.Add(value);
+            }
+            return book;
+        }
         public bool CheckDuplicateEntry(Contacts c, string bookName)
         {
             List<Contacts> book = GetListOfDictctionaryKeys(bookName);
@@ -142,14 +153,46 @@ namespace AddressBookProblem
             }
             return book;
         }
+        public void SearchPersonByCity(string city)
+        {
+            foreach (AddressBookBuilder addressbookobj in addressBookDictionary.Values)
+            {
+                CreateCityDictionary();
+                List<Contacts> contactList = GetListOfDictctionaryKeys(addressbookobj.cityDictionary);
+                foreach (Contacts contact in contactList.FindAll(c => c.City.Equals(city)).ToList())
+                {
+                    Console.WriteLine(contact.ToString());
+                }
+            }
+        }
         public void SearchPersonByState(string state)
         {
             foreach (AddressBookBuilder addressbookobj in addressBookDictionary.Values)
             {
-                List<Contacts> contactList = GetListOfDictctionaryKeys2(addressbookobj.addressBook);
+                List<Contacts> contactList = GetListOfDictctionaryKeys2(addressbookobj.stateDictionary);
                 foreach (Contacts contact in contactList.FindAll(c => c.State.Equals(state)).ToList())
                 {
                     Console.WriteLine(contact.ToString());
+                }
+            }
+        }
+        public void CreateCityDictionary()
+        {
+            foreach (AddressBookBuilder addressBookObj in addressBookDictionary.Values)
+            {
+                foreach (Contacts contact in addressBookObj.addressBook.Values)
+                {
+                    addressBookObj.cityDictionary.Add(contact, contact.City);
+                }
+            }
+        }
+        public void CreateStateDictionary()
+        {
+            foreach (AddressBookBuilder addressBookObj in addressBookDictionary.Values)
+            {
+                foreach (Contacts contact in addressBookObj.addressBook.Values)
+                {
+                    addressBookObj.stateDictionary.Add(contact.State, contact);
                 }
             }
         }
