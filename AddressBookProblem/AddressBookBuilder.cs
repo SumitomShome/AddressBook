@@ -133,5 +133,25 @@ namespace AddressBookProblem
             }
             return false;
         }
+        public List<Contacts> GetListOfDictctionaryKeys2(Dictionary<string, Contacts> d)
+        {
+            List<Contacts> book = new List<Contacts>();
+            foreach (var value in d.Values)
+            {
+                book.Add(value);
+            }
+            return book;
+        }
+        public void SearchPersonByState(string state)
+        {
+            foreach (AddressBookBuilder addressbookobj in addressBookDictionary.Values)
+            {
+                List<Contacts> contactList = GetListOfDictctionaryKeys2(addressbookobj.addressBook);
+                foreach (Contacts contact in contactList.FindAll(c => c.State.Equals(state)).ToList())
+                {
+                    Console.WriteLine(contact.ToString());
+                }
+            }
+        }
     }
 }
