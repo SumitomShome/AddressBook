@@ -114,7 +114,7 @@ namespace AddressBookProblem
                         break;
                 }
             } 
-	    while (choice != 7);
+	    while (choice != 0);
         }
     }
 }
