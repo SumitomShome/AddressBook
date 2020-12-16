@@ -26,7 +26,7 @@ namespace AddressBookProblem
             do
             {
                 Console.WriteLine($"Working On {bookName} AddressBook\n");
-                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Create new Address Book \n7.Use specific Address Book \n8. Search person by state or city \n9. Count by city or state \n10. Sort entries \n11. Use FileIO \n0.Exit from the program");
+                Console.WriteLine("Choose An Option \n1.Add New Contact \n2.Edit Existing Contact \n3.Delete A Contact \n4.View A Contact \n5.View All Contacts \n6.Create new Address Book \n7.Use specific Address Book \n8. Search person by state or city \n9. Count by city or state \n10. Sort entries \n11. Use FileIO \n12.Read/Write in CSV file \n0.Exit from the program");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -35,7 +35,11 @@ namespace AddressBookProblem
                         string firstName = Console.ReadLine();
                         Console.WriteLine("Enter Last Name :");
                         string lastName = Console.ReadLine();
-                        Contacts temp = new Contacts(firstName, lastName, null, null, null, null, 0, 0);
+                        Contacts temp = new Contacts()
+                        {
+                            FirstName = firstName,
+                            LastName = lastName
+                        };
                         if (addressBook.CheckDuplicateEntry(temp, bookName))
                         {
                             break;
@@ -150,6 +154,11 @@ namespace AddressBookProblem
                         FileIOOperations fileIO = new FileIOOperations();
                         fileIO.WriteToFile(addressBook.addressBookDictionary);
                         fileIO.ReadFromFile();
+                        break;
+                    case 12:
+                        CSVHandler handler = new CSVHandler();
+                        handler.WriteToFile(addressBook.addressBookDictionary);
+                        handler.ReadFromFile();
                         break;
                     case 0:
                         Console.WriteLine("Thank You For Using Address Book System.");
