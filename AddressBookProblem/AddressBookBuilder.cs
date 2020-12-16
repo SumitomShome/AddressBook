@@ -9,7 +9,7 @@ namespace AddressBookProblem
         private Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();
         private Dictionary<string, AddressBookBuilder> addressBookDictionary = new Dictionary<string, AddressBookBuilder>();
         private Dictionary<Contacts, string> cityDictionary = new Dictionary<Contacts, string>();
-        private Dictionary<string, Contacts> stateDictionary = new Dictionary<string, Contacts>();
+        private Dictionary<Contacts, string> stateDictionary = new Dictionary<Contacts, string>();
         public void AddContact(string firstName, string lastName, string address, string city, string state, string email, int zip, long phoneNumber, string bookName)
         {
             Contacts contact = new Contacts(firstName, lastName, address, city, state, email, zip, phoneNumber);
@@ -144,10 +144,10 @@ namespace AddressBookProblem
             }
             return false;
         }
-        public List<Contacts> GetListOfDictctionaryKeys2(Dictionary<string, Contacts> d)
+        public List<Contacts> GetListOfDictctionaryKeys2(Dictionary<Contacts, string> d)
         {
             List<Contacts> book = new List<Contacts>();
-            foreach (var value in d.Values)
+            foreach (var value in d.Keys)
             {
                 book.Add(value);
             }
@@ -192,8 +192,41 @@ namespace AddressBookProblem
             {
                 foreach (Contacts contact in addressBookObj.addressBook.Values)
                 {
-                    addressBookObj.stateDictionary.Add(contact.State, contact);
+                    addressBookObj.stateDictionary.Add(contact, contact.State);
                 }
+            }
+        }
+        public void DisplayCountByCityandState()
+        {
+            CreateCityDictionary();
+            CreateStateDictionary();
+            Dictionary<string, int> countByCity = new Dictionary<string, int>();
+            Dictionary<string, int> countByState = new Dictionary<string, int>();
+            foreach (var obj in addressBookDictionary.Values)
+            {
+                foreach (var person in obj.cityDictionary)
+                {
+                    countByCity.TryAdd(person.Value, 0);
+                    countByCity[person.Value]++;
+                }
+            }
+            Console.WriteLine("City wise count :");
+            foreach (var person in countByCity)
+            {
+                Console.WriteLine(person.Key + ":" + person.Value);
+            }
+            foreach (var obj in addressBookDictionary.Values)
+            {
+                foreach (var person in obj.stateDictionary)
+                {
+                    countByState.TryAdd(person.Value, 0);
+                    countByState[person.Value]++;
+                }
+            }
+            Console.WriteLine("State wise count :");
+            foreach (var person in countByState)
+            {
+                Console.WriteLine(person.Key + ":" + person.Value);
             }
         }
     }
